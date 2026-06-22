@@ -1,0 +1,76 @@
+import 'package:flutter/material.dart';
+import '../specials/colors.dart';
+import '../widgets/custom_buttons.dart';
+
+class LoginScreen extends StatelessWidget {
+  const LoginScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: SafeArea(
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.all(24.0),
+          child: Column(
+
+            children: [
+              const SizedBox(height: 40),
+              Container(
+                height: 80,
+                width: 80,
+                decoration: const BoxDecoration(
+                  shape: BoxShape.circle,
+                  image: DecorationImage(image: AssetImage('assets/logo.jpg'), fit: BoxFit.cover),
+                ),
+              ),
+              const SizedBox(height: 16),
+              const Text('SmartQuiz DB', style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: AppColors.textPrimary)),
+              const Text('Entraîne-toi. Progresse. Réussis.', style: TextStyle(color: AppColors.textSecondary)),
+              const SizedBox(height: 40),
+
+              Align(
+                alignment: Alignment.centerLeft,
+                child: Text('ADRESSE EMAIL', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 12, color: AppColors.textPrimary)),
+              ),
+              const SizedBox(height: 8),
+              const TextField(decoration: InputDecoration(hintText: 'exemple@email.com', prefixIcon: Icon(Icons.email_outlined, color: AppColors.textSecondary))),
+              const SizedBox(height: 20),
+
+              Align(
+                alignment: Alignment.centerLeft,
+                child: Text('MOT DE PASSE', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 12, color: AppColors.textPrimary)),
+              ),
+              const SizedBox(height: 8),
+              const TextField(obscureText: true, decoration: InputDecoration(hintText: '••••••••', prefixIcon: Icon(Icons.lock_outline, color: AppColors.textSecondary), suffixIcon: Icon(Icons.visibility_outlined, color: AppColors.textSecondary))),
+
+              Align(
+                alignment: Alignment.centerRight,
+                child: TextButton(
+                  onPressed: () => Navigator.pushNamed(context, '/forgot-password'),
+                  child: const Text('Mot de passe oublié ?', style: TextStyle(color: AppColors.secondary, fontWeight: FontWeight.w600)),
+                ),
+              ),
+              const SizedBox(height: 24),
+
+              PrimaryButton(text: 'Démarrer', onPressed: () => Navigator.pushReplacementNamed(context, '/home')),
+              const SizedBox(height: 12),
+              PrimaryButton(text: 'Créer un compte', isSecondary: true, onPressed: () => Navigator.pushNamed(context, '/register')),
+
+              const SizedBox(height: 32),
+              const Text('ou continuer avec', style: TextStyle(color: AppColors.textSecondary)),
+              const SizedBox(height: 24),
+
+              Row(
+                children: [
+                  SocialButton(text: 'Google', icon: Icons.g_mobiledata, onPressed: () {}),
+                  const SizedBox(width: 16),
+                  SocialButton(text: 'Apple', icon: Icons.apple, onPressed: () {}),
+                ],
+              )
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
